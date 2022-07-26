@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import useForm from '../../hooks/form.js';
 import { Switch, Icon } from "@blueprintjs/core";
 import { DisplayContext } from '../../context/Display';
@@ -14,6 +14,8 @@ const ToDo = () => {
   const [incomplete, setIncomplete] = useState([0]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
   const [checked, setChecked] = useState(true);
+  const display = useContext(DisplayContext);
+  console.log('DISPLAY', display);
 
   const handleChecked = () => {
     setChecked(!checked);
@@ -24,7 +26,7 @@ const ToDo = () => {
     if (!list.includes(item)) {
       item.id = uuid();
       item.complete = false;
-      console.log(item);
+      console.log('NEW ITEM', item);
       setList([...list, item]);
     }
   }

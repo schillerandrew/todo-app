@@ -7,25 +7,40 @@
 
 import React, { useState } from 'react';
 
-// create our React Context object
+// 1. create a React Context object
 export const DisplayContext = React.createContext();
 
-class DisplayProvider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showCompleted: true,
-      numberItemsPerPage: 4,
-      defaultSortField: '',
-    }
-  }
-  render() {
-    return (
-      <DisplayContext.Provider value={this.state}>
-        {this.props.children}
-      </DisplayContext.Provider>
-    );
-  }
+// 2. create a provider component
+function DisplayProvider({children}) {
+
+  // 3. create state
+  const [showCompleted, setShowCompleted] = useState(true);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [defaultSortField, setDefaultSortField] = useState('difficulty');
+
+  return(
+    <DisplayContext.Provider value={{showCompleted, itemsPerPage, defaultSortField}}>
+      {children}
+    </DisplayContext.Provider>
+  )
 }
+
+// class DisplayProvider extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       showCompleted: true,
+//       numberItemsPerPage: 4,
+//       defaultSortField: '',
+//     }
+//   }
+//   render() {
+//     return (
+//       <DisplayContext.Provider value={this.state}>
+//         {this.props.children}
+//       </DisplayContext.Provider>
+//     )
+//   }
+// }
 
 export default DisplayProvider;
