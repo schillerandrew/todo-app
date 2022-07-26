@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './app.js';
+import DisplayProvider from './context/Display.js';
 
 class Main extends React.Component {
   render() {
-    return <App />;
+    return (
+      <React.StrictMode>
+        <DisplayProvider>
+          <App />
+        </DisplayProvider>
+      </React.StrictMode>
+    );
   }
 }
 

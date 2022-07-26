@@ -9,14 +9,16 @@ const ToDo = () => {
     difficulty: 4,
   });
   const [list, setList] = useState([]);
-  const [incomplete, setIncomplete] = useState([]);
+  const [incomplete, setIncomplete] = useState([0]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
   function addItem(item) {
-    item.id = uuid();
-    item.complete = false;
-    console.log(item);
-    setList([...list, item]);
+    if (!list.includes(item)) {
+      item.id = uuid();
+      item.complete = false;
+      console.log(item);
+      setList([...list, item]);
+    }
   }
 
   function deleteItem(id) {
@@ -37,6 +39,7 @@ const ToDo = () => {
 
   }
 
+  // update page title each time list changes
   useEffect(() => {
     let incompleteCount = list.filter(item => !item.complete).length;
     setIncomplete(incompleteCount);
