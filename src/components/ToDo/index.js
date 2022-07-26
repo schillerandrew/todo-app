@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../../hooks/form.js';
+import { Switch, Icon } from "@blueprintjs/core";
+import { DisplayContext } from '../../context/Display';
 
 import { v4 as uuid } from 'uuid';
 
@@ -11,6 +13,11 @@ const ToDo = () => {
   const [list, setList] = useState([]);
   const [incomplete, setIncomplete] = useState([0]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
+  const [checked, setChecked] = useState(true);
+
+  const handleChecked = () => {
+    setChecked(!checked);
+  }
 
   function addItem(item) {
     // added if statement for minimal prevention of duplicate items
@@ -23,15 +30,15 @@ const ToDo = () => {
   }
 
   function deleteItem(id) {
-    const items = list.filter( item => item.id !== id );
+    const items = list.filter(item => item.id !== id);
     setList(items);
   }
 
   function toggleComplete(id) {
 
-    const items = list.map( item => {
-      if ( item.id == id ) {
-        item.complete = ! item.complete;
+    const items = list.map(item => {
+      if (item.id == id) {
+        item.complete = !item.complete;
       }
       return item;
     });
@@ -76,6 +83,11 @@ const ToDo = () => {
           <button type="submit">Add Item</button>
         </label>
       </form>
+
+      <Icon icon="settings" />
+      <Switch checked={checked} label="Show Completed Items" onChange={handleChecked} />
+
+      {/* <DisplayContext.Consumer>      </DisplayContext.Consumer> */}
 
       {list.map(item => (
         <div key={item.id}>
