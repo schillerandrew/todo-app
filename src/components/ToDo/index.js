@@ -13,6 +13,7 @@ const ToDo = () => {
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
   function addItem(item) {
+    // added if statement for minimal prevention of duplicate items
     if (!list.includes(item)) {
       item.id = uuid();
       item.complete = false;
