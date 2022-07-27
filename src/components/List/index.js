@@ -7,6 +7,7 @@ const List = ({ list, toggleComplete }) => {
   const [page, setPage] = useState(0);
 
   const filteredList = list.filter(item => display.showCompleted ? true : !item.complete);
+  // const filteredList = list.filter(item => !item.complete);
   const start = display.itemsPerPage * page || 0;
   const end = start + display.itemsPerPage || filteredList.length;
   const pages = new Array(Math.ceil(filteredList.length / display.itemsPerPage)).fill('');

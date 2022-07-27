@@ -19,7 +19,7 @@ Refactor the To Do application:
 
 > ## Links
 
-- [GitHub pull request](https://github.com/schillerandrew/todo-app/pull/1)
+- [GitHub pull request](https://github.com/schillerandrew/todo-app/pull/2)
 
 > ## Architecture (front-end)
 

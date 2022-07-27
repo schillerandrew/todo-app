@@ -12,14 +12,15 @@ const ToDo = () => {
     difficulty: 4,
   });
   const [list, setList] = useState([]);
-  const [incomplete, setIncomplete] = useState([0]);
+  const [incomplete, setIncomplete] = useState(-1);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
   const [checked, setChecked] = useState(true);
   const display = useContext(DisplayContext);
-  console.log('DISPLAY', display);
+  console.log('LIST', list);
 
   const handleChecked = () => {
     setChecked(!checked);
+    // setShowCompleted(false);
   }
 
   function addItem(item) {
@@ -27,7 +28,7 @@ const ToDo = () => {
     if (!list.includes(item)) {
       item.id = uuid();
       item.complete = false;
-      console.log('NEW ITEM', item);
+      // console.log('NEW ITEM', item);
       setList([...list, item]);
     }
   }
