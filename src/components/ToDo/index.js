@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import useForm from '../../hooks/form.js';
-import { Switch, Icon } from "@blueprintjs/core";
 import { DisplayContext } from '../../context/Display';
 import List from '../List/index.js';
 
@@ -18,10 +17,10 @@ const ToDo = () => {
   const display = useContext(DisplayContext);
   console.log('LIST', list);
 
-  const handleChecked = () => {
-    setChecked(!checked);
-    // setShowCompleted(false);
-  }
+  // const handleChecked = () => {
+  //   setChecked(!checked);
+  //   // setShowCompleted(false);
+  // }
 
   function addItem(item) {
     // added if statement for minimal prevention of duplicate items
@@ -87,8 +86,8 @@ const ToDo = () => {
         </label>
       </form>
 
-      <Icon icon="settings" />
-      <Switch checked={checked} label="Show Completed Items" onChange={handleChecked} />
+      
+      {/* <Switch checked={checked} label="Show Completed Items" onChange={handleChecked} /> */}
       <List list={list} toggleComplete={toggleComplete}/>
     </>
   );
