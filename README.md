@@ -2,12 +2,13 @@
 
 > ## Problem Domain
 
-Refactor the To Do application:
+Refactor the To Do application (phase 3):
 
-- Incorporate configuration settings to the application
-  - Add an editor so that users can save their preferences for the application, allowing them to change some of the default behaviors:
-    - how many items display on a page
-    - whether completed items are displayed
+- Implement login, logout, role-based access and conditional rendering based on access:
+  - Users with `read` access can view the to-do list and summary/count
+  - Users with `update` access can also mark items as complete or incomplete
+  - Users with `create` access can also add new items to the list 
+  - Users with `delete` access can also remote items from the list
 
 > ## UML
 
@@ -15,11 +16,11 @@ Refactor the To Do application:
 
 ### Standard dependencies
 
-- react react-dom react-scripts sass uuid
+- react react-dom react-scripts sass uuid react-router-dom
 
 > ## Links
 
-- [GitHub pull request](https://github.com/schillerandrew/todo-app/pull/2)
+- [GitHub pull request](https://github.com/schillerandrew/todo-app/pull/3)
 
 > ## Architecture (front-end)
 
