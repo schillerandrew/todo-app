@@ -1,11 +1,6 @@
-// Implement the React context API for defining settings across the entire application.
-// - Create a context for managing application display settings and provide this at the application level.
-// - Display or Hide completed items (boolean).
-// - Number of items to display per screen (number).
-// - Default sort field (string).
-// Manually set (hard code) those state settings in the context provider’s state, they should not be changeable.
+import React, { useState, useEffect } from 'react';
 
-import React, { useState } from 'react';
+const storage = JSON.parse(localStorage.getItem('todo'));
 
 // 1. create a React Context object
 export const DisplayContext = React.createContext();
@@ -14,12 +9,43 @@ export const DisplayContext = React.createContext();
 function DisplayProvider({children}) {
 
   // 3. create state
-  const [showCompleted, setShowCompleted] = useState(true);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
-  const [defaultSortField, setDefaultSortField] = useState('difficulty');
+  const [completed, setCompleted] = useState(storage ? storage.completed : false);
+  const [itemsPerPage, setItemsPerPage] = useState(storage ? storage.itemsPerPage : 2);
+  const [sort, setSort] = useState(storage ? storage.sort : 'difficulty');
+  const [save, setSave] = useState('false');
+
+  const showCompleted = () => {
+    setCompleted(!completed);
+  }
+
+  const changeItems = (number) => {
+    setItemsPerPage(number);
+  }
+
+  const sortBy = (string) => {
+    setSort(string);
+  }
+
+  const storeSettings = () => {
+    setSave(!save);
+  }
+
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify({completed, itemsPerPage, sort}));
+  }, [save])
+
+  const values = {
+    completed,
+    itemsPerPage,
+    sort,
+    showCompleted,
+    changeItems,
+    sortBy,
+    storeSettings,
+  };
 
   return(
-    <DisplayContext.Provider value={{showCompleted, itemsPerPage, defaultSortField}}>
+    <DisplayContext.Provider value={values}>
       {children}
     </DisplayContext.Provider>
   )

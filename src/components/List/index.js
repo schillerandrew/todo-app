@@ -6,7 +6,7 @@ const List = ({ list, toggleComplete }) => {
   const display = useContext(DisplayContext);
   const [page, setPage] = useState(0);
 
-  const filteredList = list.filter(item => display.showCompleted ? true : !item.complete);
+  const filteredList = display.completed ? list : list.filter(item => display.completed ? true : !item.complete);
   // const filteredList = list.filter(item => !item.complete);
   const start = display.itemsPerPage * page || 0;
   const end = start + display.itemsPerPage || filteredList.length;

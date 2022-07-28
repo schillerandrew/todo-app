@@ -12,7 +12,7 @@ const ToDo = () => {
     difficulty: 4,
   });
   const [list, setList] = useState([]);
-  const [incomplete, setIncomplete] = useState(-1);
+  const [incomplete, setIncomplete] = useState(0);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
   const [checked, setChecked] = useState(true);
   const display = useContext(DisplayContext);
