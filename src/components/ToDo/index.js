@@ -37,6 +37,13 @@ const ToDo = () => {
     setList(items);
   }
 
+  function updateItem(id, data) {
+    
+
+    const updatedItems = list.map(item => item.id === id ? {...item, ...data} : item);
+    setList(updatedItems);
+  }
+
   function toggleComplete(id) {
 
     const items = list.map(item => {
@@ -88,7 +95,7 @@ const ToDo = () => {
 
       
       {/* <Switch checked={checked} label="Show Completed Items" onChange={handleChecked} /> */}
-      <List list={list} toggleComplete={toggleComplete}/>
+      <List list={list} toggleComplete={toggleComplete} deleteItem={deleteItem} updateItem={updateItem}/>
     </>
   );
 };

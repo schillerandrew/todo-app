@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react';
 import { DisplayContext } from '../../context/Display';
+import { EditableText } from '@blueprintjs/core';
 
-const List = ({ list, toggleComplete }) => {
+const List = ({ list, toggleComplete, deleteItem, updateItem }) => {
 
   const display = useContext(DisplayContext);
   const [page, setPage] = useState(0);
@@ -18,10 +19,25 @@ const List = ({ list, toggleComplete }) => {
     <>
       {displayList.map(item => (
         <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+          <hr />
+          <br />
+          <span><b>To Do Item</b>:</span>
+          <EditableText onConfirm={(value) => updateItem(item.id, {text: value})} defaultValue={item.text} />
+          {/* <p>{item.text}</p> */}
+
+          <br />
+          <span><b>Assigned To</b>:</span>
+          <EditableText onConfirm={(value) => updateItem(item.id, { assignee: value})} defaultValue={item.assignee} />
+          {/* <p><small>Assigned to: {item.assignee}</small></p> */}
+
+          <br />
+          <span><b>Difficulty</b>:</span>
+          <EditableText onConfirm={(value) => updateItem(item.id, { difficulty: value})} defaultValue={item.difficulty} />
+          {/* <p><small>Difficulty: {item.difficulty}</small></p> */}
+
+          <br />
+          <button onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</button>
+          <button onClick={() => deleteItem(item.id)}>Delete</button>
           <hr />
         </div>
       ))}
