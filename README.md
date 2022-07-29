@@ -2,13 +2,18 @@
 
 > ## Problem Domain
 
-Refactor the To Do application (phase 3):
+To Do application (phase 4) -- Integrating with a live API:
 
-- Implement login, logout, role-based access and conditional rendering based on access:
-  - Users with `read` access can view the to-do list and summary/count
-  - Users with `update` access can also mark items as complete or incomplete
-  - Users with `create` access can also add new items to the list 
-  - Users with `delete` access can also remote items from the list
+- Connect to different endpoints for:
+  - creating an account (`/signup`)
+  - logging in with basic authorization (`/signin`),
+  - CRUD requests (`/todo`)
+
+Access is still role-based, with:
+
+- users can view and add items
+- editors also can update item details
+- admins also can delete items from to-do list
 
 > ## UML
 
@@ -20,7 +25,7 @@ Refactor the To Do application (phase 3):
 
 > ## Links
 
-- [GitHub pull request](https://github.com/schillerandrew/todo-app/pull/3)
+- [GitHub pull request](https://github.com/schillerandrew/todo-app/pull/4)
 
 > ## Architecture (front-end)
 
